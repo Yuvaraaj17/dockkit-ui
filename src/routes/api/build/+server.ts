@@ -1,6 +1,5 @@
 // src/routes/api/build-image/+server.ts
 import { json } from '@sveltejs/kit';
-import { env } from '$env/static/private';
 
 export async function POST({ request }) {
 	const body = await request.json();
@@ -13,7 +12,7 @@ export async function POST({ request }) {
 		{
 			method: 'POST',
 			headers: {
-				'Authorization': `token ${env.GITHUB_PAT}`,
+				// 'Authorization': `token ${env.GITHUB_PAT}`,
 				'Accept': 'application/vnd.github.v3+json',
 				'Content-Type': 'application/json'
 			},

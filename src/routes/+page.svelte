@@ -1,13 +1,19 @@
 <script>
-    // import 'flowbite';
     import Header from "$lib/components/Header.svelte";
     import InfoText from "$lib/components/InfoText.svelte";
     import ActionButton from "$lib/components/ActionButton.svelte";
     import { CloseCircleSolid } from "flowbite-svelte-icons";
-
-    let activeIndex = 0;
-    const buttons = ["Ubuntu"];
+    import data from "../data.json";
     import Select from "svelte-select";
+
+    const baseOsList = data["base-os"];
+    var selectedBaseOS = "";
+
+    const selectOS = (/** @type {string} */ value) => {
+        if(selectedBaseOS !== value){
+        selectedBaseOS = value;
+    }
+}
 
     const items = [
         { value: "gcc", label: "GCC" },
@@ -69,13 +75,9 @@
     <InfoText
         name={`Dockit is a SvelteKit application that provides a user-friendly interface for creating custom docker images. \n It allows users to easily view, create, and manage their Docker resources through a sleek and modern web interface.`}
     />
-    <div class="flex flex-row w-full gap-4">
-        {#each buttons as name, i}
-            <ActionButton
-                {name}
-                active={activeIndex === i}
-                on:click={() => (activeIndex = i)}
-            />
+    <div class="flex flex-row w-full gap-4 flex-wrap">
+        {#each baseOsList as name, i}
+            <ActionButton name={name} chooseOS={selectOS} isActive={name == selectedBaseOS}/>
         {/each}
     </div>
     <div class="flex flex-row items-center justify-between gap-4 w-full">
