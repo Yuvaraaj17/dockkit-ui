@@ -1,7 +1,0 @@
-{
-    "base-os": [
-        "Ubuntu",
-        "Rocky Linux",
-        "Debian"
-    ]
-}
